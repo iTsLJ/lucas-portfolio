@@ -1,126 +1,122 @@
-# 💻 terminalPortfolio-macOS
+# Lucas Ferreira | Portfolio
 
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Language](https://img.shields.io/badge/language-TypeScript-darkblue)
-![Framework](https://img.shields.io/badge/framework-React-skyblue)
+![Status](https://img.shields.io/badge/status-online-22c55e)
+![React](https://img.shields.io/badge/frontend-React-61dafb)
+![TypeScript](https://img.shields.io/badge/language-TypeScript-3178c6)
+![Vite](https://img.shields.io/badge/build-Vite-646cff)
 
-Um **portfólio interativo inspirado no Terminal do macOS**, onde comandos simulam uma experiência real de linha de comando para apresentar informações profissionais, projetos e contatos.
+Portfólio interativo inspirado no ambiente do macOS, com navegação em formato desktop e uma experiência principal baseada em terminal. A proposta do projeto é apresentar perfil profissional, habilidades, projetos e contatos de um jeito mais técnico e visualmente coerente com o universo de desenvolvimento.
 
-Interface **minimalista, moderna e voltada para desenvolvedores**, permitindo navegar pelas informações através de comandos de terminal.
+## Acesso
 
----
+Projeto publicado em:
 
-# 📋 Table of Contents
+https://lucas-ferreira-portfolio.vercel.app/
 
-* [Preview](#preview)
-* [Features](#features)
-* [Wireframe](#wireframe)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Tech Stack](#tech-stack)
-* [Contributing](#contributing)
-* [Project Information](#project-information)
+## Sobre o projeto
 
----
+O portfolio simula uma interface desktop com elementos clássicos do macOS, incluindo menu superior, dock e janelas interativas. O destaque é o terminal, onde o visitante pode executar comandos para explorar as informações do perfil, abrir contatos e baixar o currículo.
 
-# 📸 Preview
+Além do terminal, a interface inclui uma janela de contatos com links diretos para canais profissionais, mantendo a navegação simples e objetiva.
 
-*(Screenshots ou gifs do funcionamento do terminal quando disponível)*
+## Funcionalidades
 
----
+- Interface inspirada no macOS com dock, menu bar e janelas.
+- Terminal interativo com histórico de comandos.
+- Navegação por comandos para seções do portfolio.
+- Barra lateral com atalhos para arquivos simulados do projeto.
+- Visualização de habilidades por categorias.
+- Abertura da janela de contatos a partir do terminal.
+- Download de currículo em PDF.
+- Suporte a internacionalização com conteúdos em inglês e português.
 
-# ✨ Features
-
-* Interface de portfólio em estilo terminal
-* Navegação através de comandos de terminal
-* Simulação de CLI (Command Line Interface)
-* Exibição de projetos, habilidades e informações do desenvolvedor
-* Design inspirado no terminal do macOS
-* Interface interativa para explorar o portfólio
-
----
-
-# 🎨 Wireframe
-
-O layout e a experiência do terminal foram planejados previamente no Figma.
-
-🔗 **Visualizar protótipo no Figma:**
-https://www.figma.com/proto/Ks20PgW2VarYUKqaFNPWHV/Terminal-Portfolio?node-id=0-1&t=ATUWem973DxYv0j0-1
-
-### 📐 O que está documentado no wireframe
-
-* Estrutura do terminal estilo macOS
-* Sidebar simulando sistema de arquivos
-* Área de comandos interativos
-* Dock inferior
-* Estados de interação (about, contact, projects)
-* Organização visual e hierarquia das informações
-
----
-
-# ⚙️ Installation
-
-Clone o repositório:
+## Comandos disponíveis
 
 ```bash
-git clone https://github.com/iTsLJ/terminalPortfolio-macOS.git
+help
+about
+projects
+skills
+contact
+resume
+whoami
+clear
 ```
 
-Entre na pasta do projeto:
+## Stack utilizada
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- i18next
+- React Router
+- Radix UI
+- Vitest
+
+## Como executar localmente
+
+Com o repositório já clonado, entre na pasta da aplicação:
 
 ```bash
 cd terminalPortfolio-macOS
 ```
 
-Abra o projeto no navegador ou utilize um servidor local.
+Instale as dependências:
 
----
-
-# 💻 Usage
-
-Após abrir o projeto no navegador, utilize comandos no terminal para navegar pelo portfólio.
-
-### Exemplos de comandos
-
-```
-help      → mostra os comandos disponíveis
-about     → informações sobre o desenvolvedor
-projects  → lista de projetos
-skills    → habilidades técnicas
-contact   → informações de contato
+```bash
+npm install
 ```
 
----
+Inicie o ambiente de desenvolvimento:
 
-# 🧰 Tech Stack
+```bash
+npm run dev
+```
 
-* React
-* CSS3
+Para gerar a build de produção:
 
----
+```bash
+npm run build
+```
 
-# 🤝 Contributing
+Para executar os testes:
 
-Contribuições são bem-vindas.
+```bash
+npm run test
+```
 
-Desenvolvedores que contribuíram para o projeto:
+## Estrutura principal
 
-* Caio Resende
-* Gabriel Marcondes
-* Lucas Ferreira
-* Matheus Ruas
+```bash
+terminalPortfolio-macOS/
+├── public/
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── hooks/
+│   ├── lib/
+│   ├── pages/
+│   └── test/
+├── package.json
+└── vite.config.ts
+```
 
----
+## Wireframe
 
-# ℹ️ Project Information
+Protótipo inicial no Figma:
 
-**Author:** iTsLJ
-**Version:** 1.0.0
-**License:** MIT
+https://www.figma.com/proto/Ks20PgW2VarYUKqaFNPWHV/Terminal-Portfolio?node-id=0-1&t=ATUWem973DxYv0j0-1
 
-**Repository:**
-https://github.com/iTsLJ/terminalPortfolio-macOS
+## Contato
 
-**Keywords:**
-portfolio, terminal, cli, developer-portfolio, javascript, macos
+- GitHub: https://github.com/iTsLJ
+- LinkedIn: https://www.linkedin.com/in/lucas-ferreira10/
+- Email: lucasjlopesferreira@gmail.com
+- WhatsApp: https://wa.me/5531997708250
+
+## Licença
+
+Este projeto está sob a licença MIT.
