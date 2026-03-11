@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 10%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 20% 14%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 20% 14%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 60%;
+
+    --accent: 220 20% 22%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* macOS specific tokens */
+    --mac-glass: 220 20% 8%;
+    --mac-glass-opacity: 0.55;
+    --mac-dock-bg: 220 15% 15%;
+    --mac-menubar-bg: 220 20% 6%;
+    --mac-window-bg: 225 20% 12%;
+    --mac-window-titlebar: 225 15% 16%;
+    --mac-traffic-red: 0 80% 58%;
+    --mac-traffic-yellow: 42 95% 55%;
+    --mac-traffic-green: 130 60% 46%;
+    --mac-dot-active: 0 0% 100%;
+    --mac-desktop-gradient-from: 220 40% 8%;
+    --mac-desktop-gradient-via: 225 35% 14%;
+    --mac-desktop-gradient-to: 215 30% 10%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+  @apply bg-background text-foreground overflow-hidden;
+  font-family: 'JetBrains Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+  user-select: none;
+}
+}
+
+@layer components {
+  .mac-glass {
+    @apply backdrop-blur-2xl border border-white/10;
+    background: hsl(var(--mac-glass) / var(--mac-glass-opacity));
+  }
+
+  .mac-menubar-glass {
+    @apply backdrop-blur-xl;
+    background: hsl(var(--mac-menubar-bg) / 0.7);
+  }
+
+  .mac-dock-glass {
+    @apply backdrop-blur-2xl rounded-2xl border border-white/15 shadow-2xl;
+    background: hsl(var(--mac-dock-bg) / 0.5);
+  }
+
+  .mac-window-surface {
+    @apply rounded-xl shadow-2xl overflow-hidden border border-white/10;
+    background: hsl(var(--mac-window-bg));
+  }
+
+  .mac-window-titlebar {
+    background: hsl(var(--mac-window-titlebar));
+  }
+
+  .mac-desktop-bg {
+    background: radial-gradient(
+      ellipse at 50% 80%,
+      hsl(var(--mac-desktop-gradient-via)),
+      hsl(var(--mac-desktop-gradient-from)) 50%,
+      hsl(var(--mac-desktop-gradient-to)) 100%
+    );
+  }
+
+  .traffic-light-red {
+    background: hsl(var(--mac-traffic-red));
+  }
+  .traffic-light-yellow {
+    background: hsl(var(--mac-traffic-yellow));
+  }
+  .traffic-light-green {
+    background: hsl(var(--mac-traffic-green));
+  }
+}
