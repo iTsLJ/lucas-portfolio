@@ -4,6 +4,7 @@ import { X, Minus, Maximize2 } from "lucide-react";
 import { AppInfo } from "./Dock";
 import TerminalApp from "./TerminalApp";
 import ContactsApp from "./ContactsApp";
+import SafariApp from "./SafariApp";
 
 interface WindowProps {
   app: AppInfo;
@@ -189,6 +190,8 @@ const AppWindow = ({ app, zIndex, stackIndex = 0, onClose, onFocus, onMinimize, 
       <div className="h-[calc(100%-2.5rem)] overflow-hidden">
         {app.id === "terminal" ? (
           <TerminalApp onOpenApp={onOpenApp} />
+        ) : app.id === "safari" ? (
+          <SafariApp />
         ) : app.id === "contacts" ? (
           <ContactsApp />
         ) : (
