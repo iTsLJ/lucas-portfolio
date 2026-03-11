@@ -19,6 +19,7 @@ const ASCII_ART = `
 `.trim();
 
 const JETBRAINS = "'JetBrains Mono', monospace";
+const RESUME_FILE = "/resume.pdf";
 
 interface HistoryEntry {
   type: "output" | "command" | "error";
@@ -55,9 +56,21 @@ const TerminalApp = () => {
     "projects",
     "skills",
     "contact",
+    "resume",
     "whoami",
     "clear",
   ];
+
+  const downloadResume = () => {
+    const link = document.createElement("a");
+    link.href = RESUME_FILE;
+    link.download = "Lucas-Ferreira-Resume.pdf";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     setHistory([
@@ -91,6 +104,10 @@ const TerminalApp = () => {
         type: "output",
         translationKey: `commands.${trimmed}`,
       });
+
+      if (trimmed === "resume") {
+        downloadResume();
+      }
     } else {
       newEntries.push({
         type: "error",
@@ -167,6 +184,11 @@ const TerminalApp = () => {
           label: "contact.git",
           icon: <GitBranch size={13} className="text-[#fc8181]" />,
           command: "contact",
+        },
+        {
+          label: "resume.pdf",
+          icon: <FileText size={13} className="text-[#9f7aea]" />,
+          command: "resume",
         },
       ],
     },
