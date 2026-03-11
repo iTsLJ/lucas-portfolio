@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { AnimatePresence } from "framer-motion";
 import MenuBar from "@/components/MenuBar";
 import Dock, { apps } from "@/components/Dock";
@@ -8,11 +8,13 @@ interface OpenApp {
   id: string;
   zIndex: number;
   minimized: boolean;
+  stackIndex: number;
 }
 
 const Index = () => {
   const [openApps, setOpenApps] = useState<OpenApp[]>([]);
   const [topZ, setTopZ] = useState(10);
+  const stackCounter = useRef(0);
 
   const handleAppClick = useCallback(
     (id: string) => {
@@ -28,7 +30,8 @@ const Index = () => {
         }
         const newZ = topZ + 1;
         setTopZ(newZ);
-        return [...prev, { id, zIndex: newZ, minimized: false }];
+        stackCounter.current += 1;
+        return [...prev, { id, zIndex: newZ, minimized: false, stackIndex: stackCounter.current }];
       });
     },
     [topZ]
@@ -68,9 +71,11 @@ const Index = () => {
               key={openApp.id}
               app={appInfo}
               zIndex={openApp.zIndex}
+              stackIndex={openApp.stackIndex}
               onClose={() => handleClose(openApp.id)}
               onFocus={() => handleFocus(openApp.id)}
               onMinimize={() => handleMinimize(openApp.id)}
+              onOpenApp={handleAppClick}
             />
           );
         })}

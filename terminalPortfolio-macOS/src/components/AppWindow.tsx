@@ -8,9 +8,11 @@ import ContactsApp from "./ContactsApp";
 interface WindowProps {
   app: AppInfo;
   zIndex: number;
+  stackIndex?: number;
   onClose: () => void;
   onFocus: () => void;
   onMinimize: () => void;
+  onOpenApp?: (id: string) => void;
 }
 
 type ResizeDirection = "n" | "s" | "e" | "w" | "ne" | "nw" | "se" | "sw" | null;
@@ -19,8 +21,12 @@ const MIN_WIDTH  = 320;
 const MIN_HEIGHT = 200;
 const EDGE       = 6;
 
-const AppWindow = ({ app, zIndex, onClose, onFocus, onMinimize }: WindowProps) => {
-  const [position, setPosition]     = useState({ x: 100 + Math.random() * 200, y: 60 + Math.random() * 100 });
+const CASCADE_STEP = 36;
+const CASCADE_COLS = 8;
+
+const AppWindow = ({ app, zIndex, stackIndex = 0, onClose, onFocus, onMinimize, onOpenApp }: WindowProps) => {
+  const slot = (stackIndex - 1) % CASCADE_COLS;
+  const [position, setPosition]     = useState({ x: 80 + slot * CASCADE_STEP, y: 52 + slot * CASCADE_STEP });
   const [size, setSize]             = useState({ width: app.width || 1000, height: app.height || 630 });
   const [isMaximized, setIsMaximized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -148,7 +154,8 @@ const AppWindow = ({ app, zIndex, onClose, onFocus, onMinimize }: WindowProps) =
 
       {/* Title Bar */}
       <div
-        className="mac-window-titlebar h-10 flex items-center px-3 gap-2 cursor-grab active:cursor-grabbing"
+        className="h-10 flex items-center px-3 gap-2 cursor-grab active:cursor-grabbing"
+        style={{ background: "#111827" }}
         onMouseDown={handleMouseDown}
       >
         <div className="flex items-center gap-1.5">
@@ -181,14 +188,20 @@ const AppWindow = ({ app, zIndex, onClose, onFocus, onMinimize }: WindowProps) =
       {/* Content */}
       <div className="h-[calc(100%-2.5rem)] overflow-hidden">
         {app.id === "terminal" ? (
-          <TerminalApp />
+          <TerminalApp onOpenApp={onOpenApp} />
         ) : app.id === "contacts" ? (
           <ContactsApp />
         ) : (
-          <div className="p-4 h-full flex items-center justify-center">
-            <div className="text-muted-foreground text-sm text-center">
-              <img src={app.icon} alt={app.label} className="w-16 h-16 rounded-xl mx-auto mb-3 opacity-40" />
-              <p className="opacity-50">{app.label} — Ready</p>
+          <div className="h-full flex flex-col items-center justify-center gap-4"
+            style={{ background: "#0d1117" }}>
+            <img src={app.icon} alt={app.label} className="w-20 h-20 rounded-2xl shadow-lg opacity-80" />
+            <div className="text-center">
+              <p className="text-white font-semibold text-lg mb-1">{app.label}</p>
+              <span className="inline-block px-3 py-1 rounded-full text-xs font-medium tracking-widest"
+                style={{ background: "rgba(79,209,197,0.12)", color: "#4fd1c5", border: "1px solid rgba(79,209,197,0.3)" }}>
+                COMING SOON
+              </span>
+              <p className="text-gray-500 text-xs mt-3">This app is under construction.</p>
             </div>
           </div>
         )}

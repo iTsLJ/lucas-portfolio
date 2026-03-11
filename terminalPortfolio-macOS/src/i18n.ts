@@ -67,37 +67,6 @@ Built with Spring Boot (backend) and React (frontend), integrated with Google Ma
 → Excel Data Extractor
 Tool for extracting and processing structured data from Excel files, transforming them into usable formats for systems and databases.`,
 
-        skills: `$ skills
-
-[ Backend ]
-Java (Spring Boot)      ██████████
-C# (.NET)               █████████
-
-[ Frontend ]
-React                   █████████
-Angular                 ███████
-Next.js                 ███████
-TypeScript              ████████
-JavaScript              █████████
-HTML & CSS              ██████████
-
-[ Databases ]
-MySQL                   █████████
-SQL Server              █████████
-SQL                     ██████████
-
-[ Tools ]
-Git                     ██████████
-Docker                  ███████
-Vite                    ████████
-Tailwind CSS            █████████
-
-[ Software Engineering ]
-REST APIs               ██████████
-Clean Architecture      ████████
-Distributed Systems     ███████
-Microservices           ███████`,
-
         contact: `Email: lucas@example.com
 GitHub: github.com/lucasferreira
 LinkedIn: linkedin.com/in/lucasferreira`,
@@ -180,37 +149,6 @@ Desenvolvido com Spring Boot no backend e React no frontend, utilizando a API do
 
 → Excel Data Extractor
 Ferramenta para extração e processamento de dados estruturados de arquivos Excel, transformando-os em formatos utilizáveis para sistemas e bancos de dados.`,
-
-        skills: `$ skills
-
-[ Backend ]
-Java (Spring Boot)      ██████████
-C# (.NET)               █████████
-
-[ Frontend ]
-React                   █████████
-Angular                 ███████
-Next.js                 ███████
-TypeScript              ████████
-JavaScript              █████████
-HTML & CSS              ██████████
-
-[ Banco de Dados ]
-MySQL                   █████████
-SQL Server              █████████
-SQL                     ██████████
-
-[ Ferramentas ]
-Git                     ██████████
-Docker                  ███████
-Vite                    ████████
-Tailwind CSS            █████████
-
-[ Engenharia de Software ]
-APIs REST               ██████████
-Clean Architecture      ████████
-Sistemas Distribuídos   ███████
-Microsserviços          ███████`,
 
         contact: `Email: lucas@example.com
 GitHub: github.com/lucasferreira

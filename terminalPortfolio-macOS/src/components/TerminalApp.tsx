@@ -22,10 +22,57 @@ const JETBRAINS = "'JetBrains Mono', monospace";
 const RESUME_FILE = "/CV - Lucas Ferreira Jan_2026.pdf";
 
 interface HistoryEntry {
-  type: "output" | "command" | "error";
+  type: "output" | "command" | "error" | "skills";
   text?: string;
   translationKey?: string;
 }
+
+const skillGroups = [
+  {
+    section: "Backend",
+    items: [
+      { name: "Java (Spring Boot)", level: 80 },
+      { name: "C# (.NET)", level: 65 },
+    ],
+  },
+  {
+    section: "Frontend",
+    items: [
+      { name: "React", level: 75 },
+      { name: "Angular", level: 70 },
+      { name: "Next.js", level: 60 },
+      { name: "TypeScript", level: 80 },
+      { name: "JavaScript", level: 85 },
+      { name: "HTML & CSS", level: 90 },
+    ],
+  },
+  {
+    section: "Databases",
+    items: [
+      { name: "MySQL", level: 85 },
+      { name: "SQL Server", level: 85 },
+      { name: "SQL", level: 90 },
+    ],
+  },
+  {
+    section: "Tools",
+    items: [
+      { name: "Git", level: 90 },
+      { name: "Docker", level: 55 },
+      { name: "Vite", level: 75 },
+      { name: "Tailwind CSS", level: 85 },
+    ],
+  },
+  {
+    section: "Concepts",
+    items: [
+      { name: "REST APIs", level: 90 },
+      { name: "Clean Architecture", level: 75 },
+      { name: "Distributed Systems", level: 65 },
+      { name: "Microservices", level: 65 },
+    ],
+  },
+];
 
 interface SidebarItem {
   label: string;
@@ -38,7 +85,11 @@ interface SidebarGroup {
   items: SidebarItem[];
 }
 
-const TerminalApp = () => {
+interface TerminalAppProps {
+  onOpenApp?: (id: string) => void;
+}
+
+const TerminalApp = ({ onOpenApp }: TerminalAppProps) => {
   const { t } = useTranslation();
 
   const [activeItem, setActiveItem] = useState("Portfolio_Root");
@@ -46,6 +97,7 @@ const TerminalApp = () => {
   const [input, setInput] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [isHoveringScroll, setIsHoveringScroll] = useState(false);
 
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -100,13 +152,21 @@ const TerminalApp = () => {
     ];
 
     if (VALID_COMMANDS.includes(trimmed)) {
-      newEntries.push({
-        type: "output",
-        translationKey: `commands.${trimmed}`,
-      });
+      if (trimmed === "skills") {
+        newEntries.push({ type: "skills" });
+      } else {
+        newEntries.push({
+          type: "output",
+          translationKey: `commands.${trimmed}`,
+        });
+      }
 
       if (trimmed === "resume") {
         downloadResume();
+      }
+
+      if (trimmed === "contact") {
+        onOpenApp?.("contacts");
       }
     } else {
       newEntries.push({
@@ -248,7 +308,15 @@ const TerminalApp = () => {
             {new Date().toDateString()} on ttys001
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 pb-2">
+          <div
+            className={`flex-1 overflow-y-auto px-4 pb-2 terminal-scroll${isHoveringScroll ? ' scrolling' : ''}`}
+            onMouseEnter={() => setIsHoveringScroll(true)}
+            onMouseLeave={() => setIsHoveringScroll(false)}
+            style={{
+              scrollbarWidth: isHoveringScroll ? 'thin' : 'none',
+              scrollbarColor: 'rgba(200,200,200,0.35) transparent',
+            }}
+          >
             <pre
               className="text-xs leading-tight mb-3 select-none text-[#38b2ac]"
               style={{ fontFamily: JETBRAINS }}
@@ -275,6 +343,33 @@ const TerminalApp = () => {
                       ? t(entry.translationKey)
                       : entry.text}
                   </pre>
+                )}
+
+                {entry.type === "skills" && (
+                  <div className="py-1 text-xs">
+                    {skillGroups.map((group) => (
+                      <div key={group.section} className="mb-3">
+                        <p className="text-[#4fd1c5] mb-1.5">[ {group.section} ]</p>
+                        {group.items.map((skill, idx) => (
+                          <div key={skill.name} className="flex items-center gap-2 mb-1">
+                            <span className="text-[#a0aec0] w-40 shrink-0 text-right">{skill.name}</span>
+                            <div className="flex-1 h-1.5 rounded-full" style={{ background: "#1e2a38" }}>
+                              <div
+                                className="h-full rounded-full"
+                                style={{
+                                  width: `${skill.level}%`,
+                                  background: "linear-gradient(90deg, #38a169, #48bb78, #68d391)",
+                                  animation: `growBar 0.7s ease-out ${idx * 0.06}s both`,
+                                  transformOrigin: "left center",
+                                }}
+                              />
+                            </div>
+                            <span className="text-[#68d391] w-8 shrink-0">{skill.level}%</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
                 )}
 
                 {entry.type === "error" && (
@@ -306,6 +401,17 @@ const TerminalApp = () => {
           </div>
         </div>
       </div>
+      <style>{`
+        @keyframes growBar {
+          from { transform: scaleX(0); }
+          to   { transform: scaleX(1); }
+        }
+        .terminal-scroll::-webkit-scrollbar { display: none; }
+        .terminal-scroll.scrolling::-webkit-scrollbar { display: block; width: 6px; }
+        .terminal-scroll.scrolling::-webkit-scrollbar-track { background: transparent; }
+        .terminal-scroll.scrolling::-webkit-scrollbar-thumb { background: rgba(200,200,200,0.35); border-radius: 4px; }
+        .terminal-scroll.scrolling::-webkit-scrollbar-thumb:hover { background: rgba(200,200,200,0.55); }
+      `}</style>
     </>
   );
 };
