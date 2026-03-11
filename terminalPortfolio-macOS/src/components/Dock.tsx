@@ -18,7 +18,7 @@ export interface AppInfo {
 
 export const apps: AppInfo[] = [
   { id: "finder",   label: "Finder",   icon: finderIcon   },
-  { id: "safari",   label: "Safari",   icon: safariIcon   },
+  { id: "safari",   label: "Safari",   icon: safariIcon, width: 1120, height: 720 },
   { id: "terminal", label: "Terminal", icon: terminalIcon, width: 1000, height: 630 },
   { id: "vscode",   label: "VS Code",  icon: vscodeIcon   },
   { id: "settings", label: "Settings", icon: settingsIcon },
