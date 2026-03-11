@@ -19,7 +19,7 @@ const ASCII_ART = `
 `.trim();
 
 const JETBRAINS = "'JetBrains Mono', monospace";
-const RESUME_FILE = "/resume.pdf";
+const RESUME_FILE = "/CV - Lucas Ferreira Jan_2026.pdf";
 
 interface HistoryEntry {
   type: "output" | "command" | "error";
@@ -64,7 +64,7 @@ const TerminalApp = () => {
   const downloadResume = () => {
     const link = document.createElement("a");
     link.href = RESUME_FILE;
-    link.download = "Lucas-Ferreira-Resume.pdf";
+    link.download = "CV - Lucas Ferreira Jan_2026.pdf";
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     document.body.appendChild(link);
