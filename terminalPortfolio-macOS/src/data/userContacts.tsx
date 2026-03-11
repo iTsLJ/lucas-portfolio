@@ -8,10 +8,10 @@ export interface Contact {
 }
 
 export const userProfile = {
-  name: 'LUCAS',
-  title: 'Senior Software Engineer',
+  name: 'Lucas Ferreira',
+  title: 'Jr. Software Engineer',
   subtitle: 'BUILDING FOR THE FUTURE',
-  avatar: '/public/avatar.png',
+  avatar: '/avatar.jpeg',
 };
 
 export const userContacts: Contact[] = [

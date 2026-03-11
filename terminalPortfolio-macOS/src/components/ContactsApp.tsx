@@ -44,12 +44,17 @@ export default function ContactsApp() {
         <div className="flex flex-col items-center text-center mb-8">
           {/* Avatar */}
           <div className="relative mb-6">
-            <img
-              src={userProfile.avatar}
-              alt={userProfile.name}
-              className="w-24 h-24 rounded-full border-4 border-green-500 shadow-lg"
-            />
-            <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900"></div>
+            <div className="rounded-full p-[2px] bg-emerald-400/90 ring-1 ring-white/20">
+              <div className="w-32 h-32 rounded-full overflow-hidden bg-gray-900">
+                <img
+                  src={userProfile.avatar}
+                  alt={userProfile.name}
+                  className="w-full h-full object-cover object-[62%_28%] scale-[1.16] contrast-110 saturate-110"
+                  loading="eager"
+                />
+              </div>
+            </div>
+            <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 shadow-[0_0_8px_rgba(34,197,94,0.55)]"></div>
           </div>
 
           {/* Name and Title */}
