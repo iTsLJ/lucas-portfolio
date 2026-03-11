@@ -1,6 +1,6 @@
 export const userData = {
-  username: "user",
+  username: "Lucas",
   os: "dev_os",
-  role: "Software Engineer",
+  role: "Jr. Software Engineer",
   location: "Brazil",
 };
